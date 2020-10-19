@@ -1,8 +1,26 @@
 # HTML5 Markup
 
-## # 새로운 표준 HTML5
+## 새로운 표준 HTML5
 
-## HTML의 탄생
+### 현재 표준 HTML
+
+- HTML 5 (가장 최신)
+- XHTML1.0
+- HTML4.01
+
+### 📍Markup
+
+- **마크업 언어**는 **"마크(Mark)"로 둘러싸인 언어**
+
+  **"태크(Tag)"**로 둘러싸였다고도 표현
+
+  HTML, XML 등의 마크업 언어들은 문서의 구조를 정의합니다.
+
+  쉽게 말하면 **문서의 골격에 해당하는 부분을 작성**하는데 사용합니다.
+
+- 데이터를 주고받는 표준
+
+### HTML의 탄생
 
 1. HTML5가 탄생하기 이전까지 HTML의 최초 버전은 1993년에, 최신 버전은 1999년에 발표 됨
 
@@ -28,33 +46,7 @@
 
 4. 2007년 3월 W3C가 공개적으로 XHTML 2.0의 실패를 인정한 후 새롭게 HTML을 개발하기로 결정하면서 **WHATWG의 표준안을 대부분 수용**하여 **HTML5가 탄생**하게 됨.
 
-### 현재 표준 HTML
-
-- HTML 5 (가장 최신)
-- XHTML1.0
-- HTML4.01
-
-### 📍Markup
-
-- **마크업 언어**는 **"마크(Mark)"로 둘러싸인 언어**
-
-  **"태크(Tag)"**로 둘러싸였다고도 표현
-
-  HTML, XML 등의 마크업 언어들은 문서의 구조를 정의합니다.
-
-  쉽게 말하면 **문서의 골격에 해당하는 부분을 작성**하는데 사용합니다.
-
-- 데이터를 주고받는 표준
-
-### HTML 5 Markup
-
-- API 가 포함!
-
-## HTML의 탄생
-
-- API : 자주 쓰는 함수들의 덩어리
-- js
-- HTML은 Markup.. 합친 용어???
+---
 
 ## HTML4.01 vs XHTML 1.0 vs HTML5의 차이점
 
@@ -66,6 +58,50 @@
 
    HTML5의 **카테고리(Category)**에는 Sectioning Root, Metadata Content, Flow Content, Sectioning Content, Heading Content, Phrasing Content, Embedded Content, Interactive Content, Palpable Content, Script-supporting Elements, Transparent Content 등의 그룹이 있으며, 하나의 요소가 여러 그룹에 속해 있을 수도 있고, 그렇지 않을 수도 있음
 
+---
+
 ## HTML5의 콘텐츠 모델
 
 ![HTML5의 콘텐츠 모델](https://seulbinim.github.io/WSA/images/markup/content-model.png)
+
+### Sectioning Root 섹셔닝 루트
+
+섹셔닝 루트에 속하는 요소는 `<section>`이나`<article>` 요소와 같이 장이나 절과 같은 계층 구조로 구분되지 않고 독립적인 콘텐츠로 분리되기 때문에 아웃라인에 영향을 주지 않음.
+
+> `<blockquote>`<br>
+> `<body>`<br>
+> `<detail>`<br>
+> `<fieldset>`<br>
+> `<figure>`<br>
+> `<td>`<br>
+
+### Metadata Content 메타데이터 콘텐츠
+
+메타데이터는 문서의 정보를 포함하는 메타데이터, 스타일 표현을 위한 `<style>` 요소, 행동을 설정하는 `<script>` 요소들을 나타냄.
+
+웹 브라우저에 직접적으로 표시되지 않으며, 문서(document)와 문서 간의 관계를 설정함.
+
+> `<base>`<br>
+> `<link>`<br>
+> `<meta>`<br>
+> `<noscript>`<br>
+> `<script>`<br>
+> `<style>`<br>
+> `<title>`<br>
+
+### Flow Content 플로우 콘텐츠
+
+메타데이터 콘텐츠 요소 중 일부를 제외하고 문서 본문에 해당하는 body 요소에 들어가는 대부분의 요소들이 플로우 콘텐츠 모델에 속한다
+
+이 중에서 `<area>`, `<link>`, `<meta>`, `<style>` 요소는 조건부로 플로우 콘텐츠가 됨.
+
+### Sectioning Content 섹셔닝 콘텐츠
+
+섹셔닝 콘텐츠는 대부분 HTML5에서 새롭게 추가된 요소들이며, 제목과 그 내용을 포함한 범위를 지정하는 콘텐츠를 나타냄.
+
+모든 섹셔닝 콘텐츠는 헤딩과 아웃라인을 가짐.
+
+> `<article>`<br>
+> `<aside>`<br>
+> `<nav>`<br>
+> `<section>`<br>
