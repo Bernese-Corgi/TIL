@@ -213,6 +213,18 @@ for (var line = 1; line <= 5; line++) {
 ***
 ****
 *****
+  
+  
+// Case 2
+var result = '';
+
+for (var i = 1; i <= 5; i++) {
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
 ```
 
 
@@ -221,7 +233,21 @@ for (var line = 1; line <= 5; line++) {
 
 다음을 참고하여 *(별)로 트리를 문자열로 완성하라. 개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.
 
-```
+```javascript
+var line = 6;
+var result = '';
+
+for (var i = line - 1; i > 0; i--) {
+  for (var k = line - 1; k >= j; k--) {
+    result += ' ';
+  }
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
+
 *****
  ****
   ***
@@ -235,7 +261,18 @@ for (var line = 1; line <= 5; line++) {
 
 다음을 참고하여 *(별)로 트리를 문자열로 완성하라. 개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.
 
-```
+```javascript
+var line = 6;
+var result = '';
+
+for (var i = line - 1; i > 0; i--) {
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
+
 *****
 ****
 ***
@@ -243,13 +280,54 @@ for (var line = 1; line <= 5; line++) {
 *
 ```
 
+![Untitled Diagram (1)](/Users/choijin-yeong/Downloads/Untitled Diagram (1).png)
+
+
+
+| line | i    | i > 0 | j    | j < i | console |
+| ---- | ---- | ----- | ---- | ----- | ------- |
+| 6    | 5    | T     | 0    | T     | ✳︎       |
+|      |      |       | 1    | T     | ✳︎✳︎      |
+|      |      |       | 2    | T     | ✳︎✳︎✳︎     |
+|      |      |       | 3    | T     | ✱✱✱✱✱   |
+|      |      |       | 4    | T     | ✱✱✱✱✱   |
+|      |      |       | 5    | F     | \n      |
+|      | 4    | T     | 0    | T     | ✳︎       |
+|      |      |       | ...  | ...   |         |
+|      |      |       | 3    | T     | ✱✱✱✱    |
+|      |      |       | 4    | F     | \n      |
+|      | 3    | T     | 0    | T     | ✳︎       |
+|      |      |       | 1    | T     | ✳︎✳︎      |
+|      |      |       | 2    | T     | ✱✱✱     |
+|      |      |       | 3    | F     | \n      |
+|      | 2    | T     | 0    | T     | ✳︎       |
+|      |      |       | 1    | T     | ✱✱      |
+|      |      |       | 2    | F     | \n      |
+|      | 1    | T     | 0    | T     | ✱       |
+|      |      |       | 1    | F     | \n      |
+|      | 0    | T     | 0    | F     | \n      |
+|      |      |       |      |       |         |
+
 
 
 ##### 14. 삼각형 출력하기 - pattern 4
 
 다음을 참고하여 *(별)로 트리를 문자열로 완성하라. 개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.
 
-```
+```javascript
+var result = '';
+
+for (var i = 1; i <= 5; i++) {
+  for (var k = 6 - i; k > 0; k--) {
+    result += ' ';
+  }
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
+
     *
    **
   ***
@@ -261,7 +339,23 @@ for (var line = 1; line <= 5; line++) {
 
 ##### 15. 정삼각형 출력하기
 
-```
+```javascript
+var result = '';
+
+for (var i = 1; i <= 5; i++) {
+  for (var k = 6 - i; k > 0; k--) {
+    result += ' ';
+  }
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  for (var j = 1; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
+
     *
    ***
   *****
@@ -273,7 +367,24 @@ for (var line = 1; line <= 5; line++) {
 
 ##### 16. 역정삼각형 출력하기
 
-```
+```javascript
+var line = 6;
+var result = '';
+
+for (var i = line - 1; i > 0; i--) {
+  for (var k = line - 1; k >= j; k--) {
+    result += ' ';
+  }
+  for (var j = 0; j < i; j++) {
+    result += '*';
+  }
+  for (var j = 1; j < i; j++) {
+    result += '*';
+  }
+  result += '\n';
+}
+console.log(result);
+
 *********
  *******
   *****
