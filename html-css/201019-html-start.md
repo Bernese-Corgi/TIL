@@ -31,16 +31,12 @@
 
      html은 누구나 웹페이지를 제작할 수 있는 **느슨한 룰셋**을 갖고 있었다.
 
-     → html은 시작태그가 있으면 종료태그가 생략되는 경우도 많다.
+     → 종료태그가 생략되는 경우도 있고, 소/대문자를 혼용하기도 함
 
-     → 소/대문자 를 혼용하기도 함
+     → **코드의 일관성을 떨어뜨림** : 그래서 등장한 것이 XHTML
 
-     → **코드의 일관성을 떨어뜨림**
-
-     → 그래서 등장한 것이 XHTML
-
-     - XML : 기본적으로 시작태그가 있으면 종료태그가 무조건 있어야 한다는 등등 엄격한 규칙을 정해놓음
-     - XHTML이 등장한 이유는 결국 기존의 규칙이 너무 느슨했기 때문
+   - XML : 기본적으로 시작태그가 있으면 종료태그가 무조건 있어야 한다는 등등 엄격한 규칙을 정해놓음
+   - XHTML이 등장한 이유는 결국 기존의 규칙이 너무 느슨했기 때문
 
 3. 2004년 애플, 모질라 재단, 오페라 소프트웨어가 공동으로 설립한 공개 그룹인 **WHATWG**(Web Hypertext Application Technology Working Group)가 W3C와 별개로 Web Application 1.0과 Web Forms 2.0을 만들어 냄
 
@@ -64,16 +60,15 @@
 
 ![HTML5의 콘텐츠 모델](https://seulbinim.github.io/WSA/images/markup/content-model.png)
 
+---
+
 ### Sectioning Root 섹셔닝 루트
 
 섹셔닝 루트에 속하는 요소는 `<section>`이나`<article>` 요소와 같이 장이나 절과 같은 계층 구조로 구분되지 않고 독립적인 콘텐츠로 분리되기 때문에 아웃라인에 영향을 주지 않음.
 
-> `<blockquote>`<br>
-> `<body>`<br>
-> `<detail>`<br>
-> `<fieldset>`<br>
-> `<figure>`<br>
-> `<td>`<br>
+> `<blockquote>`<br> `<body>`<br> `<detail>`<br> `<fieldset>`<br> `<figure>`<br> `<td>`<br>
+
+---
 
 ### Metadata Content 메타데이터 콘텐츠
 
@@ -81,13 +76,9 @@
 
 웹 브라우저에 직접적으로 표시되지 않으며, 문서(document)와 문서 간의 관계를 설정함.
 
-> `<base>`<br>
-> `<link>`<br>
-> `<meta>`<br>
-> `<noscript>`<br>
-> `<script>`<br>
-> `<style>`<br>
-> `<title>`<br>
+> `<base>`<br> `<link>`<br> `<meta>`<br> > `<noscript>`<br> `<script>`<br> `<style>`<br> `<title>`<br>
+
+---
 
 ### Flow Content 플로우 콘텐츠
 
@@ -95,13 +86,12 @@
 
 이 중에서 `<area>`, `<link>`, `<meta>`, `<style>` 요소는 조건부로 플로우 콘텐츠가 됨.
 
+---
+
 ### Sectioning Content 섹셔닝 콘텐츠
 
 섹셔닝 콘텐츠는 대부분 HTML5에서 새롭게 추가된 요소들이며, 제목과 그 내용을 포함한 범위를 지정하는 콘텐츠를 나타냄.
 
 모든 섹셔닝 콘텐츠는 헤딩과 아웃라인을 가짐.
 
-> `<article>`<br>
-> `<aside>`<br>
-> `<nav>`<br>
-> `<section>`<br>
+> `<article>`<br> `<aside>`<br> `<nav>`<br> `<section>`<br>

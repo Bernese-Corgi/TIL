@@ -17,7 +17,7 @@ if (x < 20) {
 ```javascript
 // Case 1
 for (var i = 0; i < 10; i++) {
-  if (i % 2 == 0) {
+  if (i % 2 === 0) {
     console.log(i);
   }
 }
@@ -30,6 +30,11 @@ for (var i = 0; i < 10; ++i) {
 }
 // 0, 2, 4, 6, 8
 
+// Case 3
+for (var i = 0; i < 10; i+=2) {
+  console.log(i);
+}
+// 0, 2, 4, 6, 8
 
 // Case 2-홀수
 for (var i = 0; i < 10; i++) {
@@ -48,7 +53,15 @@ for (var i = 0; i < 10; ++i) {
 ##### 3. for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 문자열로 출력하시오.
 
 ```javascript
+var result = '';
 
+for (var i = 0; i < 10; i++) {
+  if (i % 2 === 0) {
+    result += i;
+  }
+}
+
+console.log(result);
 ```
 
 
@@ -72,7 +85,7 @@ for (var i = 10; i > 0; i--) {
 var i = 0;
 
 while (i < 10) {
-  if (i % 2 == 0) {
+  if (i % 2 === 0) {
     console.log(i);
   }
   i++;
@@ -88,7 +101,7 @@ while (i < 10) {
 var i = 10;
 
 while (i > 0) {
-  if (i % 2 == 1) {
+  if (i % 2 === 1) {
     console.log(i);
   }
   i--;
@@ -128,9 +141,9 @@ var result = 0;
 
 for (var i = 1; i < 20; i++) {
   result += i;
-  if (i % 2 == 0) {
+  if (i % 2 === 0) {
     result -= i;
-  } else if (i % 3 == 0) {
+  } else if (i % 3 === 0) {
     result -= i;
   }
 }
@@ -148,9 +161,9 @@ var x = 0;
 var y = 0;
 
 for (var i = 1; i < 20; i++) {
-  if (i % 2 == 0) {
+  if (i % 2 === 0) {
     x += i;
-  } else if (i % 3 == 0) {
+  } else if (i % 3 === 0) {
     y += i;
   }
 }
@@ -163,9 +176,9 @@ console.log(x + y);
 var result = 0;
 
 for (var i = 1; i < 20; i++) {
-  if (i % 2 == 0) {
+  if (i % 2 === 0) {
     result += i;
-  } else if (i % 3 == 0) {
+  } else if (i % 3 === 0) {
     result += i;
   }
 }
