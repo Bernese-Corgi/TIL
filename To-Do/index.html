@@ -53,6 +53,11 @@
     };
 
     $add.onclick = addTodo;
+
+    $inputTodo.onkeyup = e => {
+      if (e.key !== 'Enter') return;
+      addTodo();
+    }
   </script>
 </body>
 
