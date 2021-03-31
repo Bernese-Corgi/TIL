@@ -274,3 +274,26 @@ auth.setPersistence(firebase.auth.Auth.Persistence.지속형태)
 
 - 자동로그인 체크시 : persistence를 local
 - 자동로그인 체크 안하면 : persistence를 세션 또는 none
+
+<br/>
+
+**인증 지속성 설정 유틸리티 함수**
+
+```js
+export const setAuthPersist = (value) => {
+  let mode = ''
+  switch (value) {
+    default:
+    case 'local':
+      mode = 'LOCAL'
+      break
+    case 'session':
+      mode = 'SESSION'
+      break
+    case 'none':
+      mode = 'NONE'
+  }
+
+  auth.setPersistence(firebase.auth.Auth.Persistence[mode])
+}
+```
