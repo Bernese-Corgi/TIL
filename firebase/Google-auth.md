@@ -113,7 +113,7 @@ auth.useDeviceLanguage()
 auth.currentUser
 ```
 
-### 2.5. 로그인
+### 2.5. 로그인 (인증 상태 관찰)
 
 **① 로그인 함수 내보내기**
 
@@ -144,7 +144,7 @@ function Navigation(...) {
 }
 ```
 
-**③ firebase 인증 상태 변경**
+**③ firebase 인증 상태 관찰 및 변경**
 
 `auth.onAuthStateChanged()` : 사용자가 로그인되면 관찰자에서 사용자에 대한 정보를 가져올 수 있다.
 
@@ -180,6 +180,43 @@ onAuthStateChanged 에서 가져온 사용자 정보
 
 <img src="https://user-images.githubusercontent.com/72931773/112931301-dd3e6180-9156-11eb-9002-47fd2e167bb5.png" width="60%">
 
+### onAuthStateChanged : 인증 상태 관찰
+
+`snapshot`
+
+이벤트 연결한 것을 해제 🔻
+
+```js
+...
+(error) => console.error(error.message)
+```
+
+```js
+React.useEffect(() => {
+  // 인증 상태 관찰 이벤트
+  // 이벤츠 해제 함수 참조
+  const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+    if (currentUser) {
+      const userRef = await createOrGetUserProfile(currentUser)
+
+      userRef.onSnapshot(
+        (snapshot) => {
+          onSignIn({
+            uid: snapshot.id,
+            ...snapshot.data(),
+          })
+        },
+        (error) => console.error(error.message)
+      )
+    } else {
+      onSignOut()
+    }
+  })
+  // 클린업
+  return () => unsubscribe()
+}, [onSignIn, onSignOut])
+```
+
 ## 로그아웃
 
 **① 로그아웃 함수 내보내기**
@@ -203,6 +240,7 @@ import { signInWithGoogle, signOut, auth } from 'api/firebase'
 const handleSignOut = async (e) => {
   e.preventDefault()
   try {
+    // 서버에서 로그아웃 정보가 넘어오면
     await signOut()
     // 로그아웃 액션 디스패치
     onSignOut()
@@ -214,21 +252,25 @@ const handleSignOut = async (e) => {
 }
 ```
 
-## 인증 상태 관찰
-
-컬렉션 ID
-
-snapshot
-
-이벤트 연결한 것을 해제 🔻
-
-```js
-...
-(error) => console.error(error.message)
-```
-
 ## 인증 상태 지속성
 
-자동로그인 체크시 : persistence를 local
+```js
+auth.setPersistence(firebase.auth.Auth.Persistence.지속형태)
+```
 
-자동로그인 체크 안하면 : persistence를 세션 또는 none
+- 사용자 인증 상태의 지속 여부를 결정할 수 있다.
+
+<br/>
+
+**지속 형태 종류**
+
+- `firebase.auth.Auth.Persistence.LOCAL` : 브라우저 창이 닫히거나 react에서 활동이 폐기된 경우에도 상태가 유지됨. 이 상태를 삭제하려면 명시적으로 로그아웃 해야한다.
+- `firebase.auth.Auth.Persistence.SESSION` : 현재의 섹션이나 탭에서만 상태가 유지되며, 사용자가 인증된 탭이나 창이 닫히면 삭제됨. (웹앱만 해당됨)
+- `firebase.auth.Auth.Persistence.NONE` : 상태가 메모리에만 저장되고, 창이나 활동이 새로고침되면 삭제된다.
+
+<br/>
+
+**사용 예시**
+
+- 자동로그인 체크시 : persistence를 local
+- 자동로그인 체크 안하면 : persistence를 세션 또는 none
