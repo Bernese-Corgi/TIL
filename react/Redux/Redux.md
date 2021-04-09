@@ -62,7 +62,7 @@ export function addTodo(data) {
 }
 
 // 화살표 함수
-export const changeInput = (text) => ({
+export const changeInput = text => ({
   type: 'CHANGE_INPUT',
   text,
 });
@@ -93,7 +93,7 @@ function counter(state, action) {
 - 리덕스를 사용하게 되면 한 애플리케이션당 한개의 스토어를 만든다.
 - 스토어 안에는 현재 앱의 상태와 리듀서가 들어있고, 추가적으로 내장함수가 들어있다.
 
-#### dispatch 디스패치 내장함수
+#### dispatch 디스패치 (스토어 내장함수)
 
 - 스토어의 내장함수 중 하나
 - 액션을 발생시키는 함수 or 액션을 스토어에 전달하는 함수
@@ -103,7 +103,7 @@ function counter(state, action) {
 dispatch({ type: 'INCREASE' });
 ```
 
-#### subscribe 구독 내장함수
+#### subscribe 구독 (스토어 내장함수)
 
 - 스토어의 내장함수 중 하나
 - subscribe 함수를 호출할 때 인수로 특정 함수를 넣으면 액션이 디스패치될 때마다 설정한 함수<span style="color: gray">(인수로 넣은 함수)</span>가 호출된다.
@@ -111,15 +111,26 @@ dispatch({ type: 'INCREASE' });
 - 리액트에서 리덕스를 사용할 때 이 함수를 직접 사용할 일을 없지만, react-redux 라이브러리의 connect함수나 useSelector 훅을 사용해서 스토어의 상태가 업데이트되면 컴포넌트가 리렌더링되는 작업을 대신 처리한다.
 - 컴포넌트를 만들면 컴포넌트가 리덕스를 구독하게 된다. 그래서 리덕스 상태가 업데이트되면 컴포넌트도 리렌더링된다.
 
+## Redux의 세가지 규칙
+
+1. 하나의 애플리케이션에는 하나의 스토어가 있다.
+2. 상태는 읽기전용이다.
+3. 변화를 일으키는 리듀서 함수는 순수함수여야 한다.
+   1. 리듀서 함수는 이전 상태와 액션 객체를 파라미터로 받는다.
+   2. 이전의 상태는 절대 변경하지 않고, 변화를 일으킨 새로운 상태 객체를 만들어 반환한다.
+   3. 같은 파라미터로 호출된 리듀서 함수는 언제나 같은 결과값을 반환해야한다.
+   4. `new Date()`, `Math.random()`, `axios.get()` 와 같은 함수는 다른 값을 반환할 수 있으므로 사용하지 말아야 한다. (컴포넌트나 미들웨어에서 사용해야한다)
+   5. 리듀서 밖의 변수에 의존해서는 안된다. (상수는 괜찮다.)
+
+## Redux Module
+
+- 액션 타입 + 액션 생성 함수 + 리듀서를 한 파일에 선언하기 (Ducks패턴)
+- 리듀서는 export default로, 액션 생성 함수는 export 로 내보낸다.
+
 ## redux directory structure
 
 - 관리해야할 것들 : 액션 타입, 액션 크리에이터 함수, 초기값, 리듀서
 - store.js : Redux 스토어 구성
-
-## 액션 Action
-
-1. action types 상수로 선언
-2. action creater :
 
 ## createStore
 
