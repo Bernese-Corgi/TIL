@@ -171,3 +171,8 @@ combineReducers({
   reducer2: ...,
 })
 ```
+
+## useSelector
+
+- 리액트 컴포넌트에서 리덕스를 연동할 때 사용하는 hook
+- 상태를 줘야하는 훅이다 : useSelector를 사용할 때 인수에 함수를 넣어주는데, 이 함수의 파라미터에서는 리덕스의 현재 상태인 state를 가져온다.
