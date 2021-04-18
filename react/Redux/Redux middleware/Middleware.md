@@ -24,6 +24,14 @@
 - 액션의 기반에서 비동기 작업도 할 수 있다.
 - 특정 액션이 디스패치되면 어떤 api가 호출이 되고, 이 api 호출이 성공적으로 끝나면 새로운 액션을 디스패치할 수 있다.
 
+🐣 **요약**
+
+- 특정 조건에 따라 액션이 무시되게 만들 수 있다.
+- 액션을 콘솔에 출력하거나, 서버쪽에 로깅을 할 수 있다.
+- 액션이 디스패치 됐을 떄 이를 수정해서 리듀서에게 전달되도록 할 수 있다.
+- 특정 액션이 발생했을 떄 이에 기반하여 다른 액션이 발생되도록 할 수 있다.
+- 특정 액션이 발생했을 떄 자바스크립트 함수를 실행시킬 수 있다.
+
 ---
 
 <!--
@@ -81,3 +89,57 @@
 
 01:54
 비동기 작업을 처리하기 위해서 리더스 덩크 그리고 리더스 싸가라는 미디어를 사용하는 방법도 알아보도록 하겠습니다. -->
+
+## 미들웨어 함수 작성
+
+redux middleware는 하나의 함수이다.
+
+redux middleware 함수를 작성할 때는 아래의 템플릿을 사용한다. 🔻
+
+```js
+const middleware = (store) => (next) => (action) => {
+  // 하고 싶은 작업
+};
+```
+
+위의 코드를 함수 리터럴로 살펴보면 함수를 만드는 함수를 만드는 함수이다. 🔻
+
+```js
+function middleware(store) {
+  return function (next) {
+    return function (action) {
+      // 하고 싶은 작업...
+    };
+  };
+}
+```
+
+⤷ 코드 상세 분석
+
+- middleware 함수는 store<span style="color: rosybrown">(store 인스턴스)</span>를 매개변수로 받아오고, 함수를 반환한다.
+- 반환된 함수는 next를 매개변수로 받아서 또 함수를 반환한다.
+- 반환된 가장 안쪽의 함수는 action 객체를 매개변수로 받아서 하고 싶은 작업을 수행하면 된다.
+- `next`
+  - middleware에게 액션을 받아왔을 때 다음 middleware에게 전달하는 함수
+  - 다음 middleware가 없다면, next를 통해 reducer에게 액션을 전달한다.
+  - middleware를 만들 때 내부에서 next를 호출하지 않으면 특정 액션을 무시할 수 있다. <span style="color: rosybrown">(action을 무시하면 reducer까지 전달되지 않는다.)</span>
+
+<img src="https://user-images.githubusercontent.com/72931773/113177574-a4060e80-9288-11eb-8fa8-c857ee4e4c4f.png" width="100%" style="padding: 10px">
+
+action이 dispatch 됐을 때 middleware에서 next를 하면 다음 middleware에 action이 전달된다.
+
+middleware 내부에서 store.dispatch를 하게 되는 경우도 있다. <span style="color: rosybrown">(ex. 어떤 액션에 기반하여 새로운 액션 디스패치를 하는 경우)</span>
+
+- 이 경우 새로운 액션 디스패치를 하게 되므로 처음으로 흘러간다.
+
+next
+
+middleware에서 전달받았던 액션을 그대로 쭉 전달만 한다.
+
+dispatch
+
+middleware에서 전달받은 액션을 새로 전달한다.
+
+middleware에서 store를 사용할 수 있으므로 store에 있는 상태를 확인할수도 있다. (store.guest)
+
+어떤 상태를 지니고 있는지 확인할 수 없고
