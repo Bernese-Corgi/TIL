@@ -168,12 +168,14 @@ console.log(new Array({})); // [{}]
 // ⇒ Array 생성자 함수 내부에서 new.target을 확인하기 때문이다.
 
 // 3. Array.of : 전달된 인수를 요소로 가지는 배열을 생성한다.
+// Array.of는 Array 생성자 함수의 정적 메서드
 // 인수가 1개이고 숫자더라도 인수는 요소로 동작한다.
 console.log(Array.of(1)); // [ 1 ]
 console.log(Array.of(1, 2, 3)); // [ 1, 2, 3 ]
 console.log(Array.of('s', 'tr', 'ing')); // [ 's', 'tr', 'ing' ]
 
 // 4. Array.from : 유사 배열 객체 or 이터러블 객체를 인수로 전달받아 배열로 변환하여 반환한다.
+// Array.from은 Array 생성자 함수의 정적 메서드
 // ① 유사 배열 객체를 배열로 변환하여 반환한다.
 console.log(Array.from({ length: 2, 0: 'a', 1: 'b' })); // [ 'a', 'b' ]
 
