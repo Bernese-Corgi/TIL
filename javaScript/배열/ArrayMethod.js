@@ -116,4 +116,12 @@ let elemPop = arrPop.pop();
 // 제거된 요소를 반환한다.
 console.log(elemPop); // 2
 
+// 5. Array.prototype.unshift
+const arrUnshift = [1, 2];
+
+let elemUnshift = arrUnshift.unshift(3, 4);
+console.log(elemUnshift); // 4
+
+console.log(arrUnshift); // [3, 4, 1, 2]
+
 // ①②③④⑤
