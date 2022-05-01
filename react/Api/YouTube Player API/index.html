@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- iframe이 이 div 태그를 대체한다. -->
+  <div class="player"></div>
+
+  <script>
+    // IFrame Player API 코드를 비동기적으로 로드
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+
+const fisrtScriptTag = document.getElementsByTagName('script')[0];
+fisrtScriptTag.parentNode.insertBefore(tag, fisrtScriptTag);
+
+//  API 코드 다운로드 후 <iframe>(및 YouTube 플레이어)을 생성
+let player;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '360',
+    width: '640',
+    videoId: 'Empfi8q0aas',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange,
+    },
+  });
+}
+
+// API는 비디오 플레이어가 준비되면 이 함수를 호출한다.
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+// API는 플레이어의 상태가 변경될 때 이 함수를 호출한다.
+let done = false;
+
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.PLAYING && !done) {
+    setTimeout(stopVideo, 6000);
+    done = true;
+  }
+
+  function stopVideo() {
+    player.stopVideo();
+  }
+}
+
+  </script>
+</body>
+</html>
